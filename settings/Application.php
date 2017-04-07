@@ -35,10 +35,8 @@ use OC\App\AppStore\Fetcher\CategoryFetcher;
 use OC\AppFramework\Utility\TimeFactory;
 use OC\Authentication\Token\IProvider;
 use OC\Server;
-use OC\ServerContainer;
 use OC\Settings\Mailer\NewUserMailHelper;
 use OC\Settings\Middleware\SubadminMiddleware;
-use OCA\Theming\ThemingDefaults;
 use OCP\AppFramework\App;
 use OCP\IContainer;
 use OCP\Settings\IManager;
@@ -96,7 +94,7 @@ class Application extends App {
 			$server = $c->query('ServerContainer');
 
 			return new NewUserMailHelper(
-				$server->getThemingDefaults(),
+				$server->getDefaults(),
 				$server->getURLGenerator(),
 				$server->getL10N('settings'),
 				$server->getMailer(),

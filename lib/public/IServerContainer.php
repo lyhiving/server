@@ -531,4 +531,10 @@ interface IServerContainer extends IContainer {
 	 * @since 12.0.0
 	 */
 	public function getCloudIdManager();
+
+	/**
+	 * @return \OCP\Defaults
+	 * @since 12.0.0
+	 */
+	public function getDefaults();
 }

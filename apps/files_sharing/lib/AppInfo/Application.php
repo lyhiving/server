@@ -67,7 +67,7 @@ class Application extends App {
 				$federatedSharingApp->getFederatedShareProvider(),
 				$server->getEventDispatcher(),
 				$server->getL10N($c->query('AppName')),
-				$server->getThemingDefaults()
+				$server->getDefaults()
 			);
 		});
 		$container->registerService('ExternalSharesController', function (SimpleContainer $c) {

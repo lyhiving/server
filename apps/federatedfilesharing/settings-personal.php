@@ -41,7 +41,7 @@ if (count($matches) > 0 && $matches[1] <= 9) {
 $cloudID = \OC::$server->getUserSession()->getUser()->getCloudId();
 $url = 'https://nextcloud.com/federation#' . $cloudID;
 $logoPath = \OC::$server->getURLGenerator()->imagePath('core', 'logo-icon.svg');
-$theme = \OC::$server->getThemingDefaults();
+$theme = \OC::$server->getDefaults();
 $color = $theme->getColorPrimary();
 $textColor = "#ffffff";
 if(\OC::$server->getAppManager()->isEnabledForUser("theming")) {

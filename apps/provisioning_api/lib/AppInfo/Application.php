@@ -18,7 +18,7 @@ class Application extends App {
 
 		$container->registerService(NewUserMailHelper::class, function(SimpleContainer $c) use ($server) {
 			return new NewUserMailHelper(
-				$server->getThemingDefaults(),
+				$server->getDefaults(),
 				$server->getURLGenerator(),
 				$server->getL10N('settings'),
 				$server->getMailer(),

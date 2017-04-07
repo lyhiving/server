@@ -21,12 +21,11 @@
 
 namespace Tests\Settings\Mailer;
 
-use OC\Mail\EMailTemplate;
 use OC\Mail\IEMailTemplate;
 use OC\Mail\Message;
 use OC\Settings\Mailer\NewUserMailHelper;
-use OCA\Theming\ThemingDefaults;
 use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\Defaults;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
@@ -37,8 +36,8 @@ use OCP\Security\ISecureRandom;
 use Test\TestCase;
 
 class NewUserMailHelperTest extends TestCase {
-	/** @var ThemingDefaults|\PHPUnit_Framework_MockObject_MockObject */
-	private $themingDefaults;
+	/** @var Defaults|\PHPUnit_Framework_MockObject_MockObject */
+	private $defaults;
 	/** @var IURLGenerator|\PHPUnit_Framework_MockObject_MockObject */
 	private $urlGenerator;
 	/** @var IL10N|\PHPUnit_Framework_MockObject_MockObject */
@@ -59,7 +58,7 @@ class NewUserMailHelperTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->themingDefaults = $this->createMock(ThemingDefaults::class);
+		$this->defaults = $this->createMock(Defaults::class);
 		$this->urlGenerator = $this->createMock(IURLGenerator::class);
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->mailer = $this->createMock(IMailer::class);
@@ -73,7 +72,7 @@ class NewUserMailHelperTest extends TestCase {
 			}));
 
 		$this->newUserMailHelper = new NewUserMailHelper(
-			$this->themingDefaults,
+			$this->defaults,
 			$this->urlGenerator,
 			$this->l10n,
 			$this->mailer,
@@ -144,7 +143,7 @@ class NewUserMailHelperTest extends TestCase {
 			->expects($this->at(5))
 			->method('getUID')
 			->willReturn('john');
-		$this->themingDefaults
+		$this->defaults
 			->expects($this->at(0))
 			->method('getName')
 			->willReturn('TestCloud');
@@ -376,7 +375,7 @@ EOF;
 			->expects($this->at(1))
 			->method('getUID')
 			->willReturn('john');
-		$this->themingDefaults
+		$this->defaults
 			->expects($this->any())
 			->method('getName')
 			->willReturn('TestCloud');
@@ -609,7 +608,7 @@ EOF;
 			->expects($this->at(0))
 			->method('setTo')
 			->with(['recipient@example.com' => 'John Doe']);
-		$this->themingDefaults
+		$this->defaults
 			->expects($this->exactly(2))
 			->method('getName')
 			->willReturn('TestCloud');
